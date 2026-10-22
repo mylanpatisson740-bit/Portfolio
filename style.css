@@ -1,0 +1,2174 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700;900&family=Oswald:wght@400;700&display=swap');
+
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
+
+/* FOND NOIR SANS INTERRUPTION SUR TOUTE LA PAGE */
+html, body {
+  height: 100%;
+  background-color: #0a0a0a;
+  color: #fff;
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#portfolio {
+  background: #0a0a0a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+/* ─── SIDEBAR FIXE AVEC FOND ANIMÉ TOKYO GHOUL ─── */
+#sidebar {
+  width: 320px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 44px 28px 28px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  
+  /* L'ANNIMATION DE FOND : Flux d'ombres et brume de sang */
+  background: linear-gradient(135deg, #270f0f, #140505, #0a0a0a, #1f0202, #2a0000);
+  background-size: 300% 300%;
+  animation: ghoulFog 16s ease infinite;
+
+  /* Bordure droite animée (Kagune Aura) */
+  border-right: 2px solid #8b0000;
+  position: relative;
+
+  /* Masquage de la barre de défilement grise */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Masquage de la barre de défilement pour Chrome/Safari/Brave */
+#sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pseudo-élément pour la ligne de lueur Kagune sur le côté droit */
+#sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -2px;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, #ff0000, #550000, #ff0000, transparent);
+  background-size: 100% 200%;
+  animation: kaguneAura 6s linear infinite;
+  opacity: 0.8;
+  pointer-events: none;
+  filter: blur(1px);
+}
+/* Zone Photo / Silhouette avec effet Kakugan */
+.sidebar-photo-wrap {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 2px solid #8b0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+
+  /* ─── LA LIGNE MAGIQUE POUR CORRIGER LE ROND ÉCRASÉ ─── */
+  flex-shrink: 0; 
+}
+
+/* Animation de transformation au survol (Mode Goule Activé) */
+.sidebar-photo-wrap:hover {
+  background: #000000; /* L'œil se change en noir */
+  border-color: #ff0000;
+  box-shadow: 0 0 25px #ff0000, inset 0 0 15px rgba(255, 0, 0, 0.7);
+  transform: scale(1.05);
+}
+
+/* Si tu utilises la silhouette SVG interne */
+.sidebar-photo-wrap svg circle {
+  transition: fill 0.5s ease;
+}
+.sidebar-photo-wrap:hover svg circle {
+  fill: #ff0000 !important; /* Le centre de l'œil devient rouge sang */
+}
+.sidebar-photo-wrap svg path {
+  transition: stroke 0.5s ease;
+}
+.sidebar-photo-wrap:hover svg path {
+  stroke: #222 !important;
+}
+#sidebar-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+#sidebar-avatar {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+#sidebar-avatar svg {
+  width: 90px;
+  height: 90px;
+}
+
+.sidebar-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.sidebar-role {
+  font-size: 13px;
+  color: #8b0000;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.sidebar-divider {
+  width: 100%;
+  height: 1px;
+  background: #1e1e1e;
+  margin: 16px 0;
+}
+.sidebar-section-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #555;
+  align-self: flex-start;
+  margin-bottom: 12px;
+}
+.sidebar-info-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.sidebar-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: #aaa;
+  line-height: 1.45;
+}
+.sidebar-info-item i {
+  color: #8b0000;
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.sidebar-socials {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar-social-btn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #161616;
+  border: 1px solid #2a2a2a;
+  color: #ccc;
+  font-size: 13px;
+  padding: 8px 12px;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  font-family: 'Barlow', sans-serif;
+}
+.sidebar-social-btn:hover {
+  background: #1e0000;
+  border-color: #8b0000;
+  color: #fff;
+}
+.sidebar-social-btn i {
+  font-size: 16px;
+  color: #8b0000;
+  flex-shrink: 0;
+}
+.sidebar-watermark {
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: #1e1e1e;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: auto;
+  padding-top: 12px;
+}
+/* ─── CORRECTION DE LA POLICE DE L'EMAIL ─── */
+.sidebar-email {
+  font-family: 'Barlow', sans-serif; /* Même police que le reste du site */
+  font-size: 14px;
+  color: #888;
+  text-decoration: none; /* Enlève le soulignement vilain par défaut */
+  transition: color 0.3s ease;
+  margin-bottom: 30px;
+  text-align: center;
+  word-break: break-all; /* Évite que l'email dépasse sur les petits écrans */
+}
+
+/* CONTENU PRINCIPAL (nav + pages) */
+#main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+#main-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* MENU STICKY MODIFIÉ — THEME TOKYO GHOUL */
+#nav-menu {
+  /* Flux d'énergie sombre et rouge en continu */
+  background: linear-gradient(90deg, #111111, #1a0000, #111111, #220000, #111111);
+  background-size: 400% 400%;
+  animation: ghoulStream 12s ease infinite;
+  
+  /* Lueur néon rouge sang sur le bas de la bande */
+  border-bottom: 2px solid #8b0000;
+  box-shadow: 0 4px 20px rgba(139, 0, 0, 0.5);
+  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  justify-content: center;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px; /* Conservé augmenté */
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 10px 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+.nav-btn:hover { 
+  color: #fff; 
+  background: rgba(139, 0, 0, 0.2);
+  box-shadow: inset 0 0 8px rgba(255, 0, 0, 0.3);
+}
+.nav-btn.active { 
+  color: #fff; 
+  background: #8b0000;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.5), inset 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+/* CONTENUS DES PAGES */
+.page { 
+  display: none; 
+  flex: 1;
+}
+.page.active { 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.page-inner {
+  padding: 50px 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(22px, 4vw, 38px);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 40px;
+  line-height: 1;
+}
+.page-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background: #8b0000;
+}
+
+/* PAGE 1 — ACCUEIL MODIFIÉE AVEC FOND ANIMÉ */
+#page-accueil {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+#page-accueil .inner {
+  padding: 60px 20px;
+}
+.hero-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(36px, 8vw, 72px);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.hero-red {
+  color: #8b0000;
+  display: block;
+}
+.hero-sub {
+  color: #aaa;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+
+
+/* ─── PAGE ACCUEIL AVEC SQUELETTE GIF ─── */
+#page-accueil {
+  position: relative;
+  overflow: hidden;
+  background-color: #0a0a0a; /* Fond de secours si le GIF charge lentement */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+/* Positionnement et configuration du GIF de fond */
+.hero-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* ─── ICI TU METS TON GIF ─── */
+  /* Remplace 'TON_ANIMATION_FLEUR.gif' par le nom ou le chemin de ton fichier */
+  background-image: linear-gradient(rgba(10, 10, 10, 0.65), rgba(10, 10, 10, 0.65)), url('fleur.gif');
+  
+  background-size: cover;       /* Le GIF s'adapte pour remplir tout l'écran sans se déformer */
+  background-position: center;  /* Centre le visuel verticalement et horizontalement */
+  background-repeat: no-repeat; /* Évite que le GIF ne se duplique bizarrement */
+  
+  z-index: 1;                   /* Reste bien en dessous du texte */
+  opacity: 0.5;                 /* Ajuste l'opacité (entre 0 et 1) pour le rendre plus ou moins visible */
+  pointer-events: none;         /* Évite que le fond bloque les clics */
+}
+
+/* On force le contenu textuel à passer au premier plan */
+#page-accueil .inner {
+  position: relative;
+  z-index: 2;
+  padding: 60px 20px;
+}
+
+.watermark {
+  color: #1e1e1e;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 50px;
+}
+
+/* STRUCTURE ET ANIMATION DE LA FLEUR LYS ARAGNE */
+.spider-lily-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  opacity: 0.38; /* Parfaite transparence pour que les gros textes restent lisibles */
+  z-index: 1;
+  pointer-events: none;
+}
+
+.lily-svg {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  animation: lilyPulse 8s ease-in-out infinite alternate;
+}
+
+.petal, .pistil {
+  transform-origin: 50px 55px;
+}
+
+/* Effet d'ondulation asynchrone des filaments */
+.p1, .p4, .pi1 { animation: floatTentacle 4s ease-in-out infinite alternate; }
+.p2, .p5, .pi2 { animation: floatTentacle 5s ease-in-out infinite alternate-reverse 0.5s; }
+.p3, .p6, .pi3 { animation: floatTentacle 6s ease-in-out infinite alternate 1s; }
+.p7, .p8, .pi4 { animation: floatTentacle 4.5s ease-in-out infinite alternate-reverse 0.2s; }
+
+/* ---- KEYFRAMES TOKYO GHOUL ---- */
+
+/* Mouvement continu du dégradé de la barre de menu */
+@keyframes ghoulStream {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Respiration et légère rotation lente de la fleur globale */
+@keyframes lilyPulse {
+  0% {
+    transform: scale(0.92) rotate(-2deg);
+    filter: drop-shadow(0 0 8px rgba(139, 0, 0, 0.4));
+  }
+  100% {
+    transform: scale(1.06) rotate(2deg);
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.65));
+  }
+}
+
+/* Ondulation fluide des branches de la fleur */
+@keyframes floatTentacle {
+  0% { transform: rotate(-3deg) scaleX(0.96); }
+  100% { transform: rotate(3deg) scaleX(1.04); }
+}
+
+/* PAGE 2 — PROFIL */
+#page-profil .profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 40px;
+  align-items: start;
+}
+.profile-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  color: #fff;
+}
+.profile-text {
+  color: #ccc;
+  font-size: 18px; /* Augmenté */
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+.profile-meta {
+  font-size: 18px; /* Augmenté */
+  color: #ccc;
+  margin-top: 16px;
+  background: #111;
+  padding: 15px;
+  border-left: 3px solid #8b0000;
+}
+.profile-meta strong { color: #fff; }
+.avatar-box {
+  border: 2px solid #8b0000;
+  background: #161616;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 260px;
+  overflow: hidden;
+}
+.avatar-silhouette {
+  width: 140px;
+  height: 190px;
+  background: #333;
+  clip-path: polygon(30% 0%, 70% 0%, 85% 15%, 90% 35%, 80% 55%, 65% 65%, 65% 75%, 80% 85%, 80% 100%, 20% 100%, 20% 85%, 35% 75%, 35% 65%, 20% 55%, 10% 35%, 15% 15%);
+}
+
+/* PAGE 3 — BTS SIO */
+.bts-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+.bts-box {
+  border: 2px solid #8b0000;
+  padding: 40px 60px;
+  text-align: center;
+  margin-bottom: 35px;
+  background: #111;
+}
+.bts-main {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(24px, 5vw, 46px);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.bts-sub {
+  color: #8b0000;
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.bts-desc {
+  color: #ccc;
+  font-size: 19px; /* Augmenté */
+  line-height: 1.8;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* GRIDS APPRÉCIÉS */
+.slam-card {
+  background: #161616;
+  border: 1px solid #222;
+  border-bottom: 4px solid #8b0000;
+  padding: 30px 24px;
+}
+.slam-icon {
+  color: #8b0000;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.slam-card-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px; /* Augmenté */
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.slam-card-text {
+  color: #999;
+  font-size: 16px; /* Augmenté */
+  line-height: 1.7;
+}
+
+.btn-download {
+  background: #8b0000;
+  color: white;
+  padding: 8px 16px;
+  font-size: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: opacity 0.2s;
+}
+.btn-download:hover { opacity: 0.9; }
+
+/* SECTION COMPÉTENCES */
+.competences-section {
+  background-color: #0d0d0d;
+  color: #ffffff;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.competences-section .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.competences-section h2 {
+  color: #ff1e1e;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+/* Bandeau CV */
+.cv-banner {
+  background: #161616;
+  border: 1px solid #2a2a2a;
+  border-left: 4px solid #ff1e1e;
+  padding: 20px 25px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.cv-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cv-info i {
+  font-size: 2.5rem;
+  color: #ff1e1e;
+}
+
+.cv-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.2rem;
+}
+
+.cv-info p {
+  margin: 0;
+  color: #a0a0a0;
+  font-size: 0.95rem;
+}
+
+.btn-cv {
+  background-color: #ff1e1e;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-cv:hover {
+  background-color: #d01515;
+  transform: translateY(-2px);
+}
+
+/* Groupes de compétences (Développement / Réseau) */
+.skills-group {
+  margin-bottom: 40px;
+}
+.skills-group:last-child {
+  margin-bottom: 0;
+}
+.skills-group-title {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-left: 12px;
+  border-left: 4px solid #ff1e1e;
+  margin: 0 0 20px 0;
+}
+
+/* Grille des compétences */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  background: #161616;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 25px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  border-color: #ff1e1e;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.card-header i {
+  color: #ff1e1e;
+  font-size: 1.3rem;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+}
+
+.badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  background-color: #222222;
+  color: #e0e0e0;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  border: 1px solid #333333;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.badge:hover {
+  background-color: #2a1515;
+  border-color: #ff1e1e;
+  color: #ffffff;
+}
+
+/* NOUVEAU STYLE DESIGN SECTION STAGES */
+.stage-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 10px;
+}
+.stage-block {
+  background: #161616;
+  border: 1px solid #222;
+  border-left: 5px solid #8b0000;
+  padding: 24px;
+  border-radius: 4px;
+}
+.stage-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+.stage-badge {
+  background: #8b0000;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-family: 'Oswald', sans-serif;
+}
+.stage-header h3 {
+  font-size: 20px;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+}
+.company-name {
+  color: #8b0000;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.stage-text {
+  color: #ccc;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.stage-link-card {
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.stage-link-card:hover {
+  background: #1c1c1c;
+  border-left-color: #cc0000;
+}
+.stage-github-icon {
+  margin-left: auto;
+  font-size: 20px;
+  color: #ccc;
+  transition: color 0.2s;
+}
+.stage-link-card:hover .stage-github-icon {
+  color: #fff;
+}
+
+/* PROJET MAJEUR */
+#page-projet .proj-title-sm {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px; /* Augmenté */
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b0000;
+  margin-bottom: 16px;
+}
+#page-projet .proj-desc {
+  color: #ccc;
+  font-size: 18px; /* Augmenté */
+  line-height: 1.8;
+  max-width: 800px;
+}
+.proj-badge {
+  display: inline-block;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #fff;
+  font-size: 14px; /* Augmenté */
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.08em;
+  padding: 5px 14px;
+  margin: 6px 6px 0 0;
+  text-transform: uppercase;
+}
+
+/* E-COMMERCE */
+.ecom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.ecom-icon-box {
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 240px;
+  border: 2px solid #222;
+}
+.ecom-icon-box i {
+  font-size: 80px;
+  color: #8b0000;
+}
+.ecom-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  color: #ccc;
+  font-size: 17px;
+}
+.ecom-check i { color: #8b0000; font-size: 20px; flex-shrink: 0; }
+
+/* CERTIFICATIONS */
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #1e1e1e;
+}
+.cert-icon { color: #8b0000; font-size: 28px; flex-shrink: 0; }
+.cert-name { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.cert-desc { font-size: 16px; color: #999; }
+
+/* ─── CERTIFICATIONS — CARTES ─── */
+
+.certifs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.certif-card {
+  background: #161616;
+  border: 1px solid #222;
+  border-top: 3px solid #8b0000;
+  padding: 22px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: background 0.2s, border-top-color 0.2s, transform 0.2s;
+}
+.certif-card:hover {
+  background: #1c1c1c;
+  border-top-color: #cc0000;
+  transform: translateY(-2px);
+}
+
+/* Carte mise en avant (SecNum) */
+.certif-card-featured {
+  border: 1px solid #3a0000;
+  border-top: 3px solid #cc0000;
+  background: #1a0000;
+}
+.certif-card-featured:hover {
+  background: #1e0000;
+  border-top-color: #ff2222;
+}
+
+.certif-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.certif-badge-wrap {
+  flex-shrink: 0;
+}
+.certif-badge-icon {
+  font-size: 28px;
+  color: #8b0000;
+}
+.certif-card-featured .certif-badge-icon {
+  color: #cc0000;
+  filter: drop-shadow(0 0 6px rgba(204, 0, 0, 0.5));
+}
+
+.certif-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.certif-issuer {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #555;
+}
+.certif-date {
+  font-size: 12px;
+  color: #8b0000;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.certif-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.certif-desc {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.65;
+}
+
+/* Tableau de scores (SecNum) */
+.certif-scores {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid #2a0000;
+  border-bottom: 1px solid #2a0000;
+  padding: 10px 0;
+}
+.certif-score-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #888;
+}
+.certif-score-val {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #cc0000;
+  letter-spacing: 0.05em;
+}
+
+/* Tags tech */
+.certif-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+.certif-tag {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  color: #666;
+  font-size: 10px;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .certifs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Bouton "Voir l'attestation" */
+.certif-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 10px 14px;
+  background: transparent;
+  border: 1px solid #8b0000;
+  color: #ccc;
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.certif-btn:hover {
+  background: #8b0000;
+  border-color: #cc0000;
+  color: #fff;
+}
+.certif-card-featured .certif-btn {
+  border-color: #cc0000;
+}
+.certif-card-featured .certif-btn:hover {
+  background: #cc0000;
+}
+
+/* Modale de visualisation d'attestation */
+.certif-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+.certif-modal-overlay.active {
+  display: flex;
+}
+.certif-modal-content {
+  position: relative;
+  width: min(900px, 100%);
+  height: min(85vh, 1100px);
+  background: #161616;
+  border: 1px solid #2a2a2a;
+  border-top: 3px solid #cc0000;
+  display: flex;
+  flex-direction: column;
+}
+.certif-modal-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #8b0000;
+  border: 1px solid #cc0000;
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.certif-modal-close:hover {
+  background: #cc0000;
+}
+.certif-modal-frame {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+}
+
+@media (max-width: 600px) {
+  .certif-modal-overlay {
+    padding: 12px;
+  }
+  .certif-modal-close {
+    top: -14px;
+    right: 0;
+  }
+}
+
+/* CONTACT */
+#page-contact {
+  align-items: flex-start;
+}
+.contact-quote {
+  color: #8b0000;
+  font-size: 15px;
+  font-style: italic;
+  margin-bottom: 32px;
+}
+
+/* Grille formulaire + réseaux */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Formulaire */
+.contact-form .form-group {
+  margin-bottom: 18px;
+}
+.contact-form label {
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 6px;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: #111;
+  border: 1px solid #222;
+  border-bottom: 2px solid #8b0000;
+  color: #ccc;
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  resize: vertical;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #ff0000;
+  background: #140000;
+  color: #fff;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #444;
+}
+.contact-submit-btn {
+  background: #8b0000;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 12px 28px;
+  text-transform: uppercase;
+  transition: background 0.2s, box-shadow 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.contact-submit-btn:hover {
+  background: #cc0000;
+  box-shadow: 0 0 18px rgba(255, 0, 0, 0.4);
+}
+
+/* Colonne réseaux sociaux */
+.contact-social-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #1e1e1e;
+  padding-bottom: 8px;
+}
+.contact-social-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #111;
+  border: 1px solid #222;
+  border-left: 3px solid #8b0000;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  color: #ccc;
+  transition: background 0.2s, border-left-color 0.2s, color 0.2s;
+}
+.contact-social-card:hover {
+  background: #1a0000;
+  border-left-color: #ff0000;
+  color: #fff;
+}
+.contact-social-card i {
+  font-size: 26px;
+  color: #8b0000;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+.contact-social-card:hover i { color: #ff0000; }
+.cscard-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.cscard-sub {
+  font-size: 12px;
+  color: #555;
+  margin-top: 3px;
+  transition: color 0.2s;
+}
+.contact-social-card:hover .cscard-sub { color: #888; }
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+
+
+/* RESPONSIVE */
+@media (max-width: 900px){
+  .ecom-grid, #page-profil .profile-grid {
+    grid-template-columns: 1fr;
+  }
+  #portfolio {
+    flex-direction: column;
+  }
+  #sidebar {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 16px;
+    border-right: none;
+    border-bottom: 2px solid #8b0000;
+    gap: 12px;
+  }
+  .sidebar-photo-wrap {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0;
+  }
+  .sidebar-divider { display: none; }
+  .sidebar-watermark { display: none; }
+  .sidebar-section-label { display: none; }
+}
+/* ---- ANIMATIONS SURPRISE TOKYO GHOUL (SIDEBAR) ---- */
+
+/* Fait glisser le flux de sang le long de la bordure droite en continu */
+@keyframes kaguneAura {
+  0% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 50% 200%;
+  }
+}
+/* Animation du brouillard de fond de la sidebar */
+@keyframes ghoulFog {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/* ─── ANIMATION TENTACULES KAGUNE (SECTION CONTACT) ─── */
+
+/* Positionnement du lien pour accueillir les tentacules à droite */
+.ghoul-link {
+  position: relative;
+  display: inline-flex !important; /* Force l'alignement propre */
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, color 0.3s ease !important;
+}
+
+/* Décalage léger du texte vers la gauche au survol pour équilibrer */
+.ghoul-link:hover {
+  transform: translateX(-15px);
+  color: #ff0000 !important;
+}
+
+/* Conteneur des tentacules (invisible par défaut) */
+.kagune-tentacles {
+  position: absolute;
+  left: 102%; /* Se place juste à droite du texte */
+  top: 50%;
+  transform: translateY(-50%) scaleX(0); /* Écrasé au départ */
+  width: 80px;
+  height: 40px;
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet d'éjection rapide */
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Déploiement des tentacules au survol du lien */
+.ghoul-link:hover .kagune-tentacles {
+  transform: translateY(-50%) scaleX(1);
+  opacity: 1;
+}
+
+/* Style des brins du tentacule SVG */
+.t-strand {
+  stroke-dasharray: 150;
+  stroke-dashoffset: 0;
+  transform-origin: left center;
+}
+
+/* Animation d'ondulation asynchrone pour faire "vivre" les tentacules */
+.ghoul-link:hover .t-strand:nth-child(1) {
+  animation: waveTentacle 1.5s ease-in-out infinite alternate;
+}
+.ghoul-link:hover .t-strand:nth-child(2) {
+  animation: waveTentacle 1.2s ease-in-out infinite alternate-reverse;
+}
+
+/* ---- KEYFRAMES KAGUNE LINKS ---- */
+@keyframes waveTentacle {
+  0% {
+    transform: rotate(-4deg) scaleY(0.9);
+    filter: drop-shadow(0 0 2px #8b0000);
+  }
+  100% {
+    transform: rotate(6deg) scaleY(1.1);
+    filter: drop-shadow(0 0 8px #ff0000);
+  }
+}
+/* ─── SECTION LANGUES SIDEBAR ─── */
+.sidebar-languages-section {
+  width: 100%;
+  margin-bottom: 35px;
+  padding: 0 10px;
+}
+
+/* Titre de section uniforme */
+.sidebar-section-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid #1e1e1e;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+}
+
+/* Bloc d'une langue */
+.lang-item {
+  margin-bottom: 14px;
+}
+
+.lang-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-family: 'Barlow', sans-serif;
+}
+
+.lang-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ddd;
+}
+
+.lang-level {
+  font-size: 12px;
+  color: #8b0000; /* Rouge caractéristique Tokyo Ghoul */
+  font-weight: 700;
+}
+
+/* Structure de la barre de progression */
+.progress-bar-bg {
+  width: 100%;
+  height: 6px;
+  background-color: #1a1a1a;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  /* Dégradé intégrant des "points blancs scintillants" (les étoiles) au milieu du rouge sang */
+  background: linear-gradient(
+    90deg, 
+    #550000 0%, 
+    #8b0000 30%, 
+    #ffffff 50%, /* L'éclat de l'étoile */
+    #8b0000 70%, 
+    #550000 100%
+  );
+  background-size: 200% 100%; /* Permet au dégradé/étoile de voyager le long de la barre */
+  
+  /* Lueur néon rouge de base */
+  box-shadow: 0 0 8px rgba(139, 0, 0, 0.6);
+  border-radius: 3px;
+  transition: width 1s ease-in-out;
+  
+  /* Déclenchement de l'animation continue des étoiles scintillantes */
+  animation: starScintillation 3s linear infinite;
+}
+
+/* ---- OPTIONNEL : Effet de survol sur la langue pour intensifier les étoiles ---- */
+.lang-item:hover .progress-bar-fill {
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.9);
+  filter: brightness(1.2);
+}
+
+/* ---- KEYFRAMES ANIMATION ÉTOILES ---- */
+@keyframes starScintillation {
+  0% {
+    background-position: 200% 0;
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.7; /* Effet de scintillement/respiration globale de l'étoile */
+  }
+  100% {
+    background-position: -200% 0;
+    opacity: 0.9;
+  }
+}
+
+/* Niveaux de remplissage (ajustables selon vos souhaits) */
+.fill-fr { width: 100%; }
+.fill-en { width: 75%; }
+.fill-es { width: 45%; }
+/* ─── BTS SIO — NOUVELLE MISE EN PAGE ─── */
+.bts-intro-text {
+  color: #cc0000;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  text-align: center;
+  margin-top: 18px;
+}
+
+.bts-parcours-label {
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 32px;
+  letter-spacing: 0.02em;
+}
+
+.bts-cols {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 0 32px;
+  align-items: start;
+}
+
+.bts-col-divider {
+  background: #8b0000;
+  width: 1px;
+  min-height: 100%;
+  align-self: stretch;
+}
+
+.bts-col {
+  padding: 0 8px;
+}
+
+.bts-col-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fff;
+  border-bottom: 2px solid #8b0000;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: #8b0000;
+}
+
+.bts-col-acro {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.bts-col-text {
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+.bts-col-list {
+  padding-left: 20px;
+  margin-top: 4px;
+}
+.bts-col-list li {
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.8;
+  padding: 2px 0;
+}
+.bts-col-list li::marker {
+  color: #8b0000;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .bts-cols {
+    grid-template-columns: 1fr;
+  }
+  .bts-col-divider {
+    width: 100%;
+    height: 1px;
+    min-height: unset;
+    margin: 24px 0;
+  }
+}
+/* ─── NAV DROPDOWN HOVER (Stages) ─── */
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.nav-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-dropdown-arrow {
+  font-size: 11px;
+  transition: transform 0.25s ease;
+}
+.nav-dropdown:hover .nav-dropdown-arrow {
+  transform: rotate(180deg);
+}
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #111;
+  border: 1px solid #8b0000;
+  border-top: 2px solid #8b0000;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 50;
+}
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-dropdown-item {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #1e1e1e;
+  color: #aaa;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 12px 18px;
+  text-align: left;
+  text-transform: uppercase;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.nav-dropdown-item:last-child { border-bottom: none; }
+.nav-dropdown-item:hover {
+  background: #1a0000;
+  color: #fff;
+}
+.nav-dropdown-item.active {
+  color: #fff;
+  background: #8b0000;
+}
+
+/* ─── STAGE OVERVIEW CARDS (cliquables) ─── */
+.stage-overview-card {
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.stage-overview-card:hover {
+  background: #1c1c1c;
+  border-left-color: #cc0000;
+}
+.stage-overview-card:hover .stage-text {
+  color: #cc0000;
+}
+
+/* ─── BOUTON RETOUR ─── */
+.stage-back-btn {
+  background: transparent;
+  border: 1px solid #333;
+  color: #888;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.stage-back-btn:hover {
+  color: #fff;
+  border-color: #8b0000;
+}
+
+/* ─── BTS SIO — CANVAS ANIMATION ─── */
+#page-bts {
+  position: relative;
+  overflow: hidden;
+}
+#bts-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── BTS SIO — NOUVELLE MISE EN PAGE ─── */
+.bts-intro-text {
+  color: #cc0000;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  text-align: center;
+  margin-top: 18px;
+}
+.bts-parcours-label {
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 32px;
+  letter-spacing: 0.02em;
+}
+.bts-cols {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 0 32px;
+  align-items: start;
+}
+.bts-col-divider {
+  background: #8b0000;
+  width: 1px;
+  min-height: 100%;
+  align-self: stretch;
+}
+.bts-col { padding: 0 8px; }
+.bts-col-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fff;
+  border-bottom: 2px solid #8b0000;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: #8b0000;
+}
+.bts-col-acro {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+.bts-col-text {
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+.bts-col-list { padding-left: 20px; margin-top: 4px; }
+.bts-col-list li {
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.8;
+  padding: 2px 0;
+}
+.bts-col-list li::marker { color: #8b0000; font-weight: 700; }
+
+/* ─── NAV DROPDOWN HOVER (Stages) ─── */
+.nav-dropdown { position: relative; display: inline-block; }
+.nav-dropdown-trigger { display: flex; align-items: center; gap: 6px; }
+.nav-dropdown-arrow { font-size: 11px; transition: transform 0.25s ease; }
+.nav-dropdown:hover .nav-dropdown-arrow { transform: rotate(180deg); }
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%; left: 0;
+  background: #111;
+  border: 1px solid #8b0000;
+  border-top: 2px solid #8b0000;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0; visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 50;
+}
+.nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.nav-dropdown-item {
+  background: transparent; border: none;
+  border-bottom: 1px solid #1e1e1e;
+  color: #aaa; cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.1em; padding: 12px 18px;
+  text-align: left; text-transform: uppercase;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.nav-dropdown-item:last-child { border-bottom: none; }
+.nav-dropdown-item:hover { background: #1a0000; color: #fff; }
+.nav-dropdown-item.active { color: #fff; background: #8b0000; }
+
+/* ─── STAGE OVERVIEW CARDS ─── */
+.stage-overview-card { cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+.stage-overview-card:hover { background: #1c1c1c; border-left-color: #cc0000; }
+.stage-overview-card:hover .stage-text { color: #cc0000; }
+
+/* ─── BOUTON RETOUR ─── */
+.stage-back-btn {
+  background: transparent; border: 1px solid #333; color: #888;
+  cursor: pointer; font-family: 'Oswald', sans-serif;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+  padding: 8px 16px; text-transform: uppercase; margin-bottom: 28px;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.stage-back-btn:hover { color: #fff; border-color: #8b0000; }
+
+@media (max-width: 900px) {
+  .bts-cols { grid-template-columns: 1fr; }
+  .bts-col-divider { width: 100%; height: 1px; min-height: unset; margin: 24px 0; }
+}
+
+
+/* ── Écrans moyens : sidebar compacte mais toujours visible ── */
+@media (min-width: 901px) and (max-width: 1280px) {
+  #sidebar {
+    width: 220px;
+    min-width: 220px;
+    padding: 28px 16px 20px;
+  }
+  .sidebar-photo-wrap {
+    width: 90px;
+    height: 90px;
+  }
+  #sidebar-avatar svg {
+    width: 58px;
+    height: 58px;
+  }
+  .sidebar-name { font-size: 16px; }
+  .sidebar-role { font-size: 10px; }
+  .sidebar-info-item { font-size: 12px; }
+  .sidebar-social-btn { font-size: 12px; padding: 8px 10px; }
+}
+/* ─── ANIMATION DE FOND POUR LE BAS DE LA PAGE PROFIL ─── */
+
+#page-profil {
+  position: relative;
+  overflow: hidden; /* Évite que les particules dépassent de la page */
+}
+
+/* Zone d'effet concentrée principalement sur le bas de l'écran */
+/* Zone d'effet concentrée principalement sur le bas de l'écran */
+/* Zone d'effet sur toute la hauteur pour éviter les coupures nettes */
+.ghoul-particles-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Passe à 100% pour couvrir toute la page */
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.40;
+  
+  /* Particules/cendres en pur CSS */
+  background-image: 
+    radial-gradient(circle, #ff0000 2px, transparent 2px),
+    radial-gradient(circle, #cc0000 3px, transparent 3px),
+    radial-gradient(circle, #8b0000 4px, transparent 4px),
+    radial-gradient(circle, #450000 5px, transparent 5px);
+  background-size: 550px 550px, 400px 400px, 600px 600px;
+  background-position: 0 0, 40px 150px, 120px 80px;
+  
+  /* Halo lumineux rouge intense tout en bas */
+  box-shadow: inset 0 -150px 200px rgba(180, 0, 0, 0.5);
+  filter: drop-shadow(0 0 5px #ff00003e);
+
+  /* ─── LA SOLUTION MAGIQUE : LE FADE PROGRESSIF SANS LIGNE ─── */
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 35%, rgba(0,0,0,0) 70%);
+  mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 35%, rgba(0,0,0,0) 70%);
+  
+  animation: floatCinders 20s linear infinite;
+}
+
+/* On force ton contenu textuel à passer au-dessus des effets de fond */
+#page-profil .inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── KEYFRAMES DU DÉPLACEMENT DES CENDRES ─── */
+@keyframes floatCinders {
+  0% {
+    background-position: 0 550px, 40px 400px, 120px 600px;
+  }
+  100% {
+    background-position: 0 0, 40px 0, 120px 0; /* Fait monter le dégradé */
+  }
+}
+
+/* ─── SECTION VEILLE — TIMELINE ─── */
+
+.veille-intro {
+  margin-bottom: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.veille-theme-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #1a0000;
+  border: 1px solid #8b0000;
+  border-left: 4px solid #8b0000;
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  max-width: fit-content;
+}
+.veille-theme-tag i { color: #8b0000; font-size: 18px; }
+.veille-theme-sub {
+  color: #555;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  padding-left: 4px;
+}
+
+/* Conteneur général de la timeline */
+.veille-timeline {
+  position: relative;
+  padding-left: 52px;
+}
+
+/* La ligne verticale rouge */
+.veille-timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, #8b0000 8%, #550000 50%, #8b0000 92%, transparent);
+}
+
+/* Chaque entrée de la timeline */
+.timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+/* En-tête de l'entrée : point + mois */
+.timeline-marker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+  position: relative;
+  left: -52px;
+  padding-left: 0;
+}
+
+/* Point rouge sur la ligne */
+.timeline-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #8b0000;
+  border: 3px solid #0a0a0a;
+  box-shadow: 0 0 10px rgba(139, 0, 0, 0.7);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+/* Point animé pour le dernier article (le plus récent) */
+.timeline-dot-latest {
+  background: #cc0000;
+  box-shadow: 0 0 18px rgba(255, 0, 0, 0.9);
+  animation: latestPulse 2s ease-in-out infinite;
+}
+@keyframes latestPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.6); }
+  50% { box-shadow: 0 0 22px rgba(255, 0, 0, 1); }
+}
+
+/* Label du mois */
+.timeline-month {
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  white-space: nowrap;
+}
+.timeline-month span {
+  font-size: 12px;
+  color: #8b0000;
+  font-weight: 400;
+}
+
+/* Carte de l'article */
+.timeline-card {
+  background: #161616;
+  border: 1px solid #222;
+  border-left: 3px solid #8b0000;
+  padding: 16px 20px;
+  transition: border-left-color 0.2s, background 0.2s;
+}
+.timeline-card:hover {
+  background: #1c1c1c;
+  border-left-color: #cc0000;
+}
+
+.timeline-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.timeline-card-tag {
+  background: #8b0000;
+  color: #fff;
+  font-size: 10px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  flex-shrink: 0;
+}
+.timeline-card-source {
+  font-size: 12px;
+  color: #555;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.timeline-card-source a {
+  color: #8b0000;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.timeline-card-source a:hover { color: #cc0000; }
+.timeline-card-source i { color: #8b0000; }
+
+.timeline-card-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+.timeline-card-summary {
+  color: #888;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Responsive timeline */
+@media (max-width: 600px) {
+  .veille-timeline { padding-left: 36px; }
+  .veille-timeline::before { left: 8px; }
+  .timeline-marker { left: -36px; }
+  .timeline-dot { width: 18px; height: 18px; }
+  .timeline-month { font-size: 13px; }
+}
+
+/* ─── RESPONSIVE MOBILE (≤ 600px) ─── */
+@media (max-width: 600px) {
+
+  /* Navigation : scroll horizontal au lieu de wrap */
+  #nav-menu {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 6px 8px;
+    gap: 2px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  #nav-menu::-webkit-scrollbar { display: none; }
+
+  .nav-btn {
+    font-size: 11px;
+    padding: 7px 9px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Contenu des pages */
+  .page-inner {
+    padding: 24px 14px;
+  }
+
+  /* Hero */
+  .hero-sub {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+  }
+  #page-accueil .inner {
+    padding: 40px 14px;
+  }
+
+  /* Sidebar mobile : photo + nom + role seulement */
+  #sidebar {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+  .sidebar-photo-wrap {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 0;
+  }
+  .sidebar-name { font-size: 12px; }
+  .sidebar-role { font-size: 8px; }
+
+  /* Cache le surplus dans la sidebar mobile */
+  .sidebar-info-block,
+  .sidebar-languages-section,
+  .sidebar-socials,
+  .sidebar-email {
+    display: none;
+  }
+
+  /* Grilles → 1 colonne */
+  .ecom-grid, #page-profil .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* BTS colonnes */
+  .bts-cols {
+    grid-template-columns: 1fr;
+  }
+  .bts-col-divider {
+    width: 100%;
+    height: 1px;
+    min-height: unset;
+    margin: 16px 0;
+  }
+
+  /* BTS box */
+  .bts-box {
+    padding: 20px 18px;
+  }
+
+  /* Page titre décoration */
+  .page-title {
+    padding-left: 14px;
+    margin-bottom: 24px;
+  }
+
+  /* Contact */
+  #page-contact .inner {
+    padding: 30px 14px;
+  }
+  .contact-link {
+    font-size: 14px;
+  }
+
+  /* Certifications */
+  .cert-name { font-size: 16px; }
+  .cert-desc { font-size: 13px; }
+}

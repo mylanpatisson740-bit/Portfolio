@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="MP.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mylan Patisson - Portfolio BTS SIO SLAM</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<div id="portfolio">
+
+  <!-- SIDEBAR FIXE -->
+  <aside id="sidebar">
+    <div class="sidebar-photo-wrap">
+      <img src="lilly.gif" alt="Photo de profil" id="sidebar-photo" onerror="this.style.display='none';document.getElementById('sidebar-avatar').style.display='flex';" />
+      <div id="sidebar-avatar">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="22" r="12" fill="#333"/>
+          <path d="M6 55c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="#333" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sidebar-name">Mylan Patisson</div>
+    <div class="sidebar-role">Étudiant BTS SIO SLAM</div>
+
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section-label">Informations</div>
+    <div class="sidebar-info-block">
+      <div class="sidebar-info-item">
+        <i class="bi bi-geo-alt-fill"></i>
+        <span>Paris, France</span>
+      </div>
+      <div class="sidebar-info-item">
+        <i class="bi bi-envelope-fill"></i>
+        <span>mylanpatisson740@gmail.com</span>
+      </div>
+      <div class="sidebar-info-item">
+        <i class="bi bi-mortarboard-fill"></i>
+        <span>ENC Bessières</span>
+      </div>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-languages-section">
+      <div class="sidebar-section-label">Langues</div>
+      
+      <div class="lang-item">
+        <div class="lang-info">
+          <span class="lang-name">Français</span>
+          <span class="lang-level">Langue maternelle</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill fill-fr"></div>
+        </div>
+      </div>
+
+      <div class="lang-item">
+        <div class="lang-info">
+          <span class="lang-name">Anglais</span>
+          <span class="lang-level">B2 (Technique)</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill fill-en"></div>
+        </div>
+      </div>
+
+      <div class="lang-item">
+        <div class="lang-info">
+          <span class="lang-name">Espagnol</span>
+          <span class="lang-level">A2</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill fill-es"></div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section-label">Réseaux</div>
+    <div class="sidebar-socials">
+      <a href="https://www.linkedin.com/in/mylan-patisson-81b4ab262/" target="_blank" class="sidebar-social-btn contact-link ghoul-link"   title="LinkedIn">
+        <i class="bi bi-linkedin">LinkedIn</i>
+        <span class="kagune-tentacles">
+          <svg viewBox="0 0 100 40">
+            <path d="M0,20 Q30,5 60,15 T100,10" fill="none" stroke="#8b0000" stroke-width="2" class="t-strand"/>
+            <path d="M0,20 Q40,35 70,20 T95,30" fill="none" stroke="#ff0000" stroke-width="1.2" class="t-strand"/>
+          </svg>
+        </span>
+      </a>
+      <a href="https://github.com/mylanpatisson740-bit" target="_blank" class="sidebar-social-btn contact-link ghoul-link" title="GitHub">
+        <i class="bi bi-github">GitHub</i>
+        <span class="kagune-tentacles">
+          <svg viewBox="0 0 100 40">
+            <path d="M0,20 Q30,5 60,15 T100,10" fill="none" stroke="#8b0000" stroke-width="2" class="t-strand"/>
+            <path d="M0,20 Q40,35 70,20 T95,30" fill="none" stroke="#ff0000" stroke-width="1.2" class="t-strand"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-watermark">Mylan Patisson // PORTFOLIO</div>
+  </aside>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div id="main-content">
+
+  <nav id="nav-menu">
+    <button class="nav-btn active" onclick="showPage('accueil',this)">Accueil</button>
+    <button class="nav-btn" onclick="showPage('profil',this)">Profil</button>
+    <button class="nav-btn" onclick="showPage('bts',this)">BTS SIO</button>
+    <button class="nav-btn" onclick="showPage('competences',this)">Compétences</button>
+    <div class="nav-dropdown" id="nav-dropdown-stages">
+      <button class="nav-btn nav-dropdown-trigger" onclick="showPage('parcours',this)">
+        Stages <i class="bi bi-chevron-down nav-dropdown-arrow"></i>
+      </button>
+      <div class="nav-dropdown-menu">
+        <button class="nav-dropdown-item" onclick="showPage('stage1',this)">1ère Année</button>
+        <button class="nav-dropdown-item" onclick="showPage('stage2',this)">2ème Année</button>
+      </div>
+    </div>
+    <div class="nav-dropdown" id="nav-dropdown-projet">
+      <button class="nav-btn nav-dropdown-trigger" onclick="showPage('projet',this)">
+        Projet <i class="bi bi-chevron-down nav-dropdown-arrow"></i>
+      </button>
+      <div class="nav-dropdown-menu">
+        <button class="nav-dropdown-item" onclick="showPage('projet-scolaire',this)">Projets scolaires</button>
+        <button class="nav-dropdown-item" onclick="showPage('projet-perso',this)">Projets personnels</button>
+        <button class="nav-dropdown-item" onclick="showPage('situation-prof',this)">Situation Professionnelle</button>
+      </div>
+    </div>
+    <button class="nav-btn" onclick="showPage('certifs',this)">Certifications</button>
+    <button class="nav-btn" onclick="showPage('veille',this)">Veille</button>
+    <button class="nav-btn" onclick="showPage('contact',this)">Contact</button>
+  </nav>
+
+  <div class="page active" id="page-accueil">
+    <div class="hero-bg">
+    </div>
+
+    <div class="inner" style="position: relative; z-index: 2;">
+      <div class="hero-title">
+        PORTFOLIO
+        <span class="hero-red">DE Mylan PATISSON </span>
+      </div>
+      <div class="hero-sub">BTS SIO - SLAM</div>
+      <div class="watermark">Mylan PATISSON</div>
+    </div>
+  </div>
+
+  <section class="page" id="page-profil">
+    <div class="ghoul-particles-bg"></div>
+    <div class="page-inner">
+      <h2 class="page-title">Profil personnel</h2>
+      <div class="profile-grid">
+        <div>
+          <div class="profile-label">Qui suis-je ?</div>
+          <p class="profile-text">Je m'appelle Mylan Patisson et j'ai 18 ans.</p>
+          <p class="profile-text">Actuellement étudiant en BTS SIO option SLAM à l'ENC Bessières , j'ai choisi la voie SLAM car petit j'étais intéresser par la personne en capuche avec son écran et du code en vert, il correspond notamment à mon projet professionnelle.</p>
+          <p class="profile-text">Grâce à cette passion je me suis directement orienté en BAC PRO Systèmes Numérique au lycée Galilée pour intégrer le plus rapidement le domaine et avec un projet effectuer dans cette école qui était un jeu en python , je me suis épris de la programmation d'où mon choix de l'option SLAM.</p>
+        </div>
+        <div>
+          <div class="avatar-box">
+            <div class="avatar-silhouette"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-bts">
+    <canvas id="bts-canvas"></canvas>
+    <div class="page-inner" style="position:relative;z-index:2;">
+
+      <div class="bts-box" style="margin-bottom: 28px;">
+        <h2 class="bts-main">Qu'est-ce qu'est le BTS SIO ?</h2>
+        <p class="bts-intro-text">
+          Le Brevet de Technicien Supérieur aux Services Informatiques aux Organisations (BTS SIO)
+          s'adresse à ceux qui souhaitent se former en deux ans aux métiers d'administrateur réseau
+          ou de développeur, et ainsi par la suite intégrer directement le marché du travail ou
+          continuer des études dans le domaine de l'informatique.
+        </p>
+      </div>
+
+      <p class="bts-parcours-label">Deux parcours à suivre sont disponibles lors de ce BTS.</p>
+
+      <div class="bts-cols">
+        <div class="bts-col">
+          <h3 class="bts-col-title">Parcours SLAM</h3>
+          <p class="bts-col-acro">L'acronyme SLAM signifie « Solutions Logicielles et Applications Métier ».</p>
+          <p class="bts-col-text">L'option SLAM forme des spécialistes des logiciels (rédaction d'un cahier des charges, formulation des besoins et spécifications, développement, intégration au sein de la société).</p>
+          <p class="bts-col-text">Les techniciens supérieurs en informatique option SLAM sont préparés aux métiers de :</p>
+          <ol class="bts-col-list">
+            <li>Développeurs concepteurs d'applications</li>
+            <li>Technicien maintenance d'applications</li>
+            <li>Intégrateur Web / Webmaster / administrateur de site</li>
+            <li>Responsable de services applicatifs</li>
+            <li>Développeur d'applications mobiles</li>
+          </ol>
+        </div>
+        <div class="bts-col-divider"></div>
+        <div class="bts-col">
+          <h3 class="bts-col-title">Parcours SISR</h3>
+          <p class="bts-col-acro">L'acronyme SISR signifie « Solutions d'Infrastructure, Systèmes et Réseaux ».</p>
+          <p class="bts-col-text">L'option SISR forme des professionnels des réseaux et équipements informatiques (installation, maintenance, sécurité). En sortant d'un BTS SIO SISR, vous serez capables de gérer et d'administrer le réseau d'une société et d'assurer sa sécurité et sa maintenance.</p>
+          <p class="bts-col-text">Les techniciens supérieurs en informatique option SISR peuvent accéder aux métiers de :</p>
+          <ol class="bts-col-list">
+            <li>Administrateur systèmes et réseaux</li>
+            <li>Informaticien support et déploiement</li>
+            <li>Pilote d'exploitation</li>
+            <li>Support systèmes et réseaux</li>
+            <li>Technicien d'infrastructure</li>
+            <li>Technicien de production</li>
+            <li>Technicien micro et réseaux</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-competences">
+    <div class="competences-section">
+      <div class="container">
+        <h2>COMPÉTENCES</h2>
+
+        <div class="cv-banner">
+          <div class="cv-info">
+            <i class="bi bi-file-earmark-pdf"></i>
+            <div>
+              <h3>Mon Curriculum Vitae</h3>
+              <p>Consultez ou téléchargez mon CV à jour.</p>
+            </div>
+          </div>
+          <div class="cv-actions">
+            <a href="assets/CV_Mylan_Patisson_ATS.pdf" class="btn-cv" target="_blank">
+              <i class="bi bi-download"></i> Télécharger le CV (PDF)
+            </a>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <h3 class="skills-group-title">Compétences en Développement</h3>
+          <div class="skills-grid">
+
+            <div class="skill-card">
+              <div class="card-header">
+                <i class="bi bi-code-slash"></i>
+                <h3>Génie Logiciel</h3>
+              </div>
+              <div class="badges-container">
+                <span class="badge">POO</span>
+                <span class="badge">Design Patterns</span>
+                <span class="badge">Git</span>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="card-header">
+                <i class="bi bi-hdd-network"></i>
+                <h3>Back-End</h3>
+              </div>
+              <div class="badges-container">
+                <span class="badge">Python</span>
+                <span class="badge">PHP</span>
+                <span class="badge">Java</span>
+                <span class="badge">C#</span>
+                <span class="badge">Kotlin</span>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="card-header">
+                <i class="bi bi-palette"></i>
+                <h3>Front-End</h3>
+              </div>
+              <div class="badges-container">
+                <span class="badge">HTML5 / CSS3</span>
+                <span class="badge">JavaScript</span>
+                <span class="badge">Responsive Design</span>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="card-header">
+                <i class="bi bi-database"></i>
+                <h3>Outils BDD</h3>
+              </div>
+              <div class="badges-container">
+                <span class="badge">SQL / MySQL</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <h3 class="skills-group-title">Compétences Réseaux</h3>
+          <div class="skills-grid">
+
+            <div class="skill-card">
+              <div class="card-header">
+                <i class="bi bi-sliders"></i>
+                <h3>Configuration Réseau</h3>
+              </div>
+              <div class="badges-container">
+                <span class="badge">Configuration Switch/Routeur</span>
+                <span class="badge">VLAN</span>
+                <span class="badge">Cisco packet tracer</span>
+                <span class="badge">Routage & Switching</span>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="card-header">
+                <i class="bi bi-diagram-3"></i>
+                <h3>Infrastructure & Support</h3>
+              </div>
+              <div class="badges-container">
+                <span class="badge">Virtualisation</span>
+                <span class="badge">Installation d'OS (Windows / Linux)</span>
+                <span class="badge">Support & Maintenance</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE STAGES GÉNÉRALE -->
+  <section class="page" id="page-parcours">
+    <div class="page-inner">
+      <h2 class="page-title">Stages Professionnels</h2>
+      <div class="stage-container">
+        <div class="stage-block stage-overview-card" onclick="showPage('stage1',null)">
+          <div class="stage-header">
+            <span class="stage-badge">1ère ANNÉE</span>
+            <h3>Stage en Entreprise — Développeur Backend</h3>
+          </div>
+          <div class="stage-body">
+            <p class="company-name"><i class="bi bi-building"></i> Ecole National de Commerce</p>
+            <p class="stage-text">Cliquez pour voir le détail →</p>
+          </div>
+        </div>
+        <div class="stage-block stage-overview-card" onclick="showPage('stage2',null)">
+          <div class="stage-header">
+            <span class="stage-badge">2nde ANNÉE</span>
+            <h3>Stage en Entreprise — Développeur Backend</h3>
+          </div>
+          <div class="stage-body">
+            <p class="company-name"><i class="bi bi-building"></i> CCG Solutions (2025)</p>
+            <p class="stage-text">Cliquez pour voir le détail →</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE STAGE 1ÈRE ANNÉE -->
+  <section class="page" id="page-stage1">
+    <div class="page-inner">
+      <button class="stage-back-btn" onclick="showPage('parcours',null)">
+        <i class="bi bi-arrow-left"></i> Retour aux stages
+      </button>
+      <h2 class="page-title">Stage 1ère Année</h2>
+      <div class="stage-block">
+        <div class="stage-header">
+          <span class="stage-badge">1ère ANNÉE</span>
+          <h3>Stage en Entreprise — Développeur Backend</h3>
+        </div>
+        <div class="stage-body" style="display:block;padding:20px 0 0;">
+          <p class="company-name"><i class="bi bi-building"></i> Ecole National de Commerce</p>
+          <p class="stage-text">Ajout de fonctionnalités à l'application backend, participation aux réunions d'équipe et documentation technique.</p>
+          <div style="margin-top:20px;">
+            <a href="assets/Rapport_Stage_1èreAnéee.pdf" target="_blank" rel="noopener" class="btn-download">
+              <i class="bi bi-file-earmark-arrow-down"></i> Télécharger le rapport de stage
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE STAGE 2ÈME ANNÉE -->
+  <section class="page" id="page-stage2">
+    <div class="page-inner">
+      <button class="stage-back-btn" onclick="showPage('parcours',null)">
+        <i class="bi bi-arrow-left"></i> Retour aux stages
+      </button>
+      <h2 class="page-title">Stage 2ème Année</h2>
+      <div class="stage-block">
+        <div class="stage-header">
+          <span class="stage-badge">2nde ANNÉE</span>
+          <h3>Stage en Entreprise — Mainteneur App</h3>
+        </div>
+        <div class="stage-body" style="display:block;padding:20px 0 0;">
+          <p class="company-name"><i class="bi bi-building"></i> CCG Solutions (2025)</p>
+          <p class="stage-text">Maintenance corrective et évolutive d'applications internes, rédaction de documentations techniques et implémentation de tests unitaires automatisés.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE PROJETS — OVERVIEW -->
+  <section class="page" id="page-projet">
+    <div class="page-inner">
+      <h2 class="page-title">Projets</h2>
+      <div class="stage-container">
+        <div class="stage-block stage-overview-card" onclick="showPage('projet-scolaire',null)">
+          <div class="stage-header">
+            <span class="stage-badge">SCOLAIRE</span>
+            <h3>Projets scolaires</h3>
+          </div>
+          <div class="stage-body">
+            <p class="company-name"><i class="bi bi-mortarboard-fill"></i> Lycée Galilée / ENC Bessières</p>
+            <p class="stage-text">Cliquez pour voir les projets →</p>
+          </div>
+        </div>
+        <div class="stage-block stage-overview-card" onclick="showPage('projet-perso',null)">
+          <div class="stage-header">
+            <span class="stage-badge">PERSONNEL</span>
+            <h3>Projets personnels</h3>
+          </div>
+          <div class="stage-body">
+            <p class="company-name"><i class="bi bi-person-fill"></i> Initiatives personnelles</p>
+            <p class="stage-text">Cliquez pour voir les projets →</p>
+          </div>
+        </div>
+        <div class="stage-block stage-overview-card" onclick="showPage('situation-prof',null)">
+          <div class="stage-header">
+            <span class="stage-badge">Situation Professionnelle</span>
+          <h3>Situation Professionnelle</h3>
+          </div>
+          <div class="stage-body">
+            <p class="company-name"><i class="bi bi-person-fill"></i>Epreuve pro</p>
+            <p class="stage-text">Cliquez pour voir les projets →</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE PROJETS SCOLAIRES -->
+  <section class="page" id="page-projet-scolaire">
+    <div class="page-inner">
+      <button class="stage-back-btn" onclick="showPage('projet',null)">
+        <i class="bi bi-arrow-left"></i> Retour aux projets
+      </button>
+      <h2 class="page-title">Projets scolaires</h2>
+      <div class="stage-container">
+        <div class="stage-block">
+          <div class="stage-header">
+            <span class="stage-badge">C#</span>
+            <h3>Gestion du matériel</h3>
+          </div>
+          <div class="stage-body" style="display:block;padding:20px 0 0;">
+            <p class="company-name"><i class="bi bi-building"></i> ENC Bessières (2026)</p>
+            <p class="stage-text">Développement d'une application lourde en C# pour la gestion du matériel d'un parc informatique. Intégration d'un système de log sécurisé et dashboard de monitoring.</p>
+            <div style="margin-top:16px;">
+              <span class="proj-badge">Entity Framework</span>
+              <span class="proj-badge">C#</span>
+            </div>
+          </div>
+        </div>
+        <div class="stage-block stage-link-card" onclick="window.open('https://github.com/mylanpatisson740-bit/Projet_Scolaire','_blank')">
+          <div class="stage-header">
+            <span class="stage-badge">PYTHON</span>
+            <h3>Jeu en Python</h3>
+            <i class="bi bi-github stage-github-icon"></i>
+          </div>
+          <div class="stage-body" style="display:block;padding:20px 0 0;">
+            <p class="company-name"><i class="bi bi-controller"></i> Lycée Galilée</p>
+            <p class="stage-text">Projet réalisé au lycée pro qui a déclenché ma passion pour la programmation. Conception d'un jeu en Python avec gestion d'états et logique de score.</p>
+            <div style="margin-top:16px;">
+              <span class="proj-badge">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE PROJETS PERSONNELS -->
+  <section class="page" id="page-projet-perso">
+    <div class="page-inner">
+      <button class="stage-back-btn" onclick="showPage('projet',null)">
+        <i class="bi bi-arrow-left"></i> Retour aux projets
+      </button>
+      <h2 class="page-title">Projets personnels</h2>
+      <div class="stage-container">
+        <div class="stage-block stage-link-card" onclick="window.open('https://github.com/mylanpatisson740-bit/calculator_tips','_blank')">
+          <div class="stage-header">
+            <span class="stage-badge">KOTLIN</span>
+            <h3>Calculator Tips</h3>
+            <i class="bi bi-github stage-github-icon"></i>
+          </div>
+          <div class="stage-body" style="display:block;padding:20px 0 0;">
+            <p class="company-name"><i class="bi bi-calculator"></i> Projet personnel</p>
+            <p class="stage-text">Application mobile développée en Kotlin permettant de calculer rapidement le montant du pourboire à ajouter à une addition.</p>
+            <div style="margin-top:16px;">
+              <span class="proj-badge">Kotlin</span>
+            </div>
+          </div>
+        </div>
+        <div class="stage-block stage-link-card" onclick="window.open('https://github.com/mylanpatisson740-bit/DiceRoller','_blank')">
+          <div class="stage-header">
+            <span class="stage-badge">KOTLIN</span>
+            <h3>Dice Roller</h3>
+            <i class="bi bi-github stage-github-icon"></i>
+          </div>
+          <div class="stage-body" style="display:block;padding:20px 0 0;">
+            <p class="company-name"><i class="bi bi-dice-5"></i> Projet personnel</p>
+            <p class="stage-text">Application mobile développée en Kotlin permettant de lancer un dé virtuel et d'afficher le résultat aléatoirement.</p>
+            <div style="margin-top:16px;">
+              <span class="proj-badge">Kotlin</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE Situation Professionnelle -->
+  <section class="page" id="page-situation-prof">
+    <div class="page-inner">
+      <button class="stage-back-btn" onclick="showPage('projet',null)">
+        <i class="bi bi-arrow-left"></i> Retour aux projets
+      </button>
+      <h2 class="page-title">Situation Professionnelle</h2>
+      <div class="stage-container">
+        <div class="stage-block">
+          <div class="stage-header">
+            <span class="stage-badge">E6</span>
+            <h3>Epreuve E6</h3>
+          </div>
+          <div class="stage-body" style="display:block;padding:20px 0 0;">
+            <p class="company-name"><i class="bi bi-controller"></i></p>
+            <p class="stage-text"></p>
+            <div style="margin-top:16px;">
+              <span class="proj-badge">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="page" id="page-certifs">
+    <div class="page-inner">
+      <h2 class="page-title">Certifications</h2>
+
+      <div class="certifs-grid">
+
+        <!-- Python Essentials 1 — Cisco / Python Institute -->
+        <div class="certif-card">
+          <div class="certif-card-top">
+            <div class="certif-badge-wrap">
+              <i class="bi bi-patch-check-fill certif-badge-icon"></i>
+            </div>
+            <div class="certif-meta">
+              <span class="certif-issuer">Cisco Networking Academy &amp; Python Institute</span>
+              <span class="certif-date"><i class="bi bi-calendar3"></i> 23 Fév 2026</span>
+            </div>
+          </div>
+          <div class="certif-title">Python Essentials 1</div>
+          <p class="certif-desc">Maîtrise des fondamentaux du langage Python : syntaxe, structures de contrôle, fonctions et programmation orientée objet.</p>
+          <div class="certif-tags">
+            <span class="certif-tag">Python</span>
+            <span class="certif-tag">Programmation</span>
+          </div>
+          <button class="certif-btn" onclick="openCertifModal('assets/certifs/Python_Essentials_1_certificate_mylanpatisson740.pdf')">
+            <i class="bi bi-eye-fill"></i> Voir l'attestation
+          </button>
+        </div>
+
+        <!-- SecNum académie — ANSSI -->
+        <div class="certif-card certif-card-featured">
+          <div class="certif-card-top">
+            <div class="certif-badge-wrap">
+              <i class="bi bi-shield-fill-check certif-badge-icon"></i>
+            </div>
+            <div class="certif-meta">
+              <span class="certif-issuer">ANSSI — SecNum académie</span>
+              <span class="certif-date"><i class="bi bi-calendar3"></i> 6 Nov 2025</span>
+            </div>
+          </div>
+          <div class="certif-title">MOOC Sécurité Numérique</div>
+          <p class="certif-desc">Formation complète en cybersécurité — 4 modules validés avec succès.</p>
+          <div class="certif-scores">
+            <div class="certif-score-row"><span>Panorama de la SSI</span><span class="certif-score-val">90%</span></div>
+            <div class="certif-score-row"><span>Sécurité de l'authentification</span><span class="certif-score-val">90%</span></div>
+            <div class="certif-score-row"><span>Sécurité sur Internet</span><span class="certif-score-val">92%</span></div>
+            <div class="certif-score-row"><span>Sécurité du poste &amp; nomadisme</span><span class="certif-score-val">90%</span></div>
+          </div>
+          <div class="certif-tags">
+            <span class="certif-tag">Cybersécurité</span>
+            <span class="certif-tag">SSI</span>
+            <span class="certif-tag">ANSSI</span>
+          </div>
+          <button class="certif-btn" onclick="openCertifModal('assets/certifs/secnum-academie.pdf')">
+            <i class="bi bi-eye-fill"></i> Voir l'attestation
+          </button>
+        </div>
+
+
+
+        <!-- Pix -->
+        <div class="certif-card">
+          <div class="certif-card-top">
+            <div class="certif-badge-wrap">
+              <i class="bi bi-patch-check-fill certif-badge-icon"></i>
+            </div>
+            <div class="certif-meta">
+              <span class="certif-issuer">Pix</span>
+              <span class="certif-date"><i class="bi bi-calendar3"></i> 2025</span>
+            </div>
+          </div>
+          <div class="certif-title">Compétences Numériques</div>
+          <p class="certif-desc">Certification nationale des compétences numériques — Score : 600+.</p>
+          <div class="certif-tags">
+            <span class="certif-tag">Numérique</span>
+            <span class="certif-tag">Fondamental</span>
+          </div>
+          <button class="certif-btn" onclick="openCertifModal('assets/certifs/pix.pdf')">
+            <i class="bi bi-eye-fill"></i> Voir l'attestation
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Modale de visualisation des attestations -->
+  <div id="certif-modal-overlay" class="certif-modal-overlay" onclick="closeCertifModal(event)">
+    <div class="certif-modal-content" onclick="event.stopPropagation()">
+      <button class="certif-modal-close" onclick="closeCertifModal()" aria-label="Fermer">
+        <i class="bi bi-x-lg"></i>
+      </button>
+      <iframe id="certif-modal-frame" class="certif-modal-frame" src="" title="Attestation de certification"></iframe>
+    </div>
+  </div>
+
+  <section class="page" id="page-veille">
+    <div class="page-inner">
+      <h2 class="page-title">Veille informationnelle</h2>
+
+      <div class="veille-intro">
+        <div class="veille-theme-tag"><i class="bi bi-cpu-fill"></i> IA &amp; Développement d'Application</div>
+        <div class="veille-theme-sub">Évolution · Remplacement · Innovation · Nouveaux Profils</div>
+      </div>
+
+      <div class="veille-timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Septembre <span>2024</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Octobre <span>2024</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Novembre <span>2024</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Décembre <span>2024</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Janvier <span>2025</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Février <span>2025</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Mars <span>2025</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Avril <span>2025</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Mai <span>2025</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Juin <span>2025</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Juillet <span>2025</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Août <span>2025</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Septembre <span>2025</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Octobre <span>2025</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Novembre <span>2025</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Décembre <span>2025</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Janvier <span>2026</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Février <span>2026</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Mars <span>2026</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Avril <span>2026</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Mai <span>2026</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot timeline-dot-latest"></div>
+            <div class="timeline-month">Juin <span>2026</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">IA générative</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+            </div>
+            <div class="timeline-card-title">Titre de l'article</div>
+            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-contact">
+    <div class="page-inner">
+      <h2 class="page-title">Contact</h2>
+
+      <div class="contact-grid">
+
+        <!-- FORMULAIRE -->
+        <div class="contact-form-col">
+          <form class="contact-form" action="https://formspree.io/f/xwvjakvl" method="POST">
+            <div class="form-group">
+              <label for="c-name">Nom</label>
+              <input type="text" id="c-name" name="name" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+              <label for="c-email">Email</label>
+              <input type="email" id="c-email" name="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="c-subject">Sujet</label>
+              <input type="text" id="c-subject" name="subject" placeholder="Sujet du message">
+            </div>
+            <div class="form-group">
+              <label for="c-message">Message</label>
+              <textarea id="c-message" name="message" rows="6" placeholder="Votre message..." required></textarea>
+            </div>
+            <button type="submit" class="contact-submit-btn">
+              <i class="bi bi-send-fill"></i> Envoyer le message
+            </button>
+          </form>
+        </div>
+
+        <!-- LIENS SOCIAUX -->
+        <div class="contact-social-col">
+          <div class="contact-social-title">Me retrouver sur</div>
+
+          <a href="https://www.linkedin.com/in/mylan-patisson-81b4ab262/" target="_blank" class="contact-social-card">
+            <i class="bi bi-linkedin"></i>
+            <div>
+              <div class="cscard-name">LinkedIn</div>
+            </div>
+          </a>
+
+          <a href="https://github.com/mylanpatisson740-bit" target="_blank" class="contact-social-card">
+            <i class="bi bi-github"></i>
+            <div>
+              <div class="cscard-name">GitHub</div>
+            </div>
+          </a>
+
+          <a href="mailto:mylanpatisson740@gmail.com" class="contact-social-card">
+            <i class="bi bi-envelope-fill"></i>
+            <div>
+              <div class="cscard-name">Email</div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  </div><!-- fin #main-content -->
+</div><!-- fin #portfolio -->
+
+</body>
+</html>
