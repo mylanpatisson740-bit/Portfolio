@@ -1,4 +1,7 @@
-﻿function showPage(id, btn) {
+﻿console.log('%cPsst... 👀 toi qui fouilles dans la console...', 'color:#ff4d4d; font-size:16px; font-weight:bold;');
+console.log('%cTape "sudo" n\'importe où sur la page (en dehors d\'un champ de texte) pour voir ce qui se passe...', 'color:#999; font-size:12px;');
+
+function showPage(id, btn) {
   // Masque toutes les pages
   document.querySelectorAll('.page').forEach(page => {
     page.classList.remove('active');
@@ -178,5 +181,235 @@ document.addEventListener('keydown', (e) => {
         once.observe(section, { attributes: true, attributeFilter: ['class'] });
       }
     }
+  });
+})();
+
+/* ── Animation canvas Veille : schéma de neurones discret ── */
+(function() {
+  function initVeilleCanvas() {
+    const canvas = document.getElementById('veille-neural-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      const section = document.getElementById('page-veille');
+      canvas.width  = section.offsetWidth  || window.innerWidth;
+      canvas.height = section.offsetHeight || window.innerHeight;
+      if (canvas.height < 100) canvas.height = window.innerHeight - 50;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const COUNT = 55;
+    const LINK_DIST = 190;
+    const nodes = Array.from({ length: COUNT }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: 2 + Math.random() * 1.8,
+      pulseSpeed: 0.008 + Math.random() * 0.018,
+      pulseOffset: Math.random() * Math.PI * 2,
+    }));
+
+    let frame = 0;
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Connexions entre neurones proches
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < LINK_DIST) {
+            const alpha = (1 - dist / LINK_DIST) * 0.35;
+            ctx.strokeStyle = `rgba(180, 0, 0, ${alpha})`;
+            ctx.lineWidth = 1.2;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Neurones (points)
+      nodes.forEach(n => {
+        const pulse = 0.5 + 0.5 * Math.sin(frame * n.pulseSpeed + n.pulseOffset);
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(220, 20, 20, ${0.4 + pulse * 0.4})`;
+        ctx.fill();
+
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > canvas.width)  n.vx *= -1;
+        if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+      });
+
+      frame++;
+      requestAnimationFrame(draw);
+    }
+    draw();
+  }
+
+  const veilleMutObs = new MutationObserver(() => {
+    const section = document.getElementById('page-veille');
+    if (section && section.classList.contains('active')) {
+      setTimeout(() => {
+        const c = document.getElementById('veille-neural-canvas');
+        if (c) {
+          c.width  = section.offsetWidth  || window.innerWidth;
+          c.height = section.offsetHeight || window.innerHeight;
+        }
+      }, 50);
+    }
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.getElementById('page-veille');
+    if (section) {
+      veilleMutObs.observe(section, { attributes: true, attributeFilter: ['class'] });
+      if (section.classList.contains('active')) initVeilleCanvas();
+      else {
+        const once = new MutationObserver(() => { initVeilleCanvas(); once.disconnect(); });
+        once.observe(section, { attributes: true, attributeFilter: ['class'] });
+      }
+    }
+  });
+})();
+
+/* ── Easter egg : terminal caché, déclenché en tapant "sudo" ── */
+(function() {
+  const TRIGGER = 'sudo';
+  let buffer = '';
+
+  const COMMANDS = {
+    help: () => [
+      'Commandes disponibles :',
+      '  whoami    - qui je suis',
+      '  skills    - mes compétences principales',
+      '  projects  - mes projets récents',
+      '  contact   - me contacter',
+      '  clear     - vider le terminal',
+      '  exit      - fermer ce terminal',
+    ],
+    whoami: () => [
+      'mylan-patisson',
+      'Étudiant BTS SIO SLAM — ENC Bessières.',
+      "Passionné de développement depuis un petit jeu en Python au lycée.",
+    ],
+    skills: () => [
+      'Back-End   : Python, PHP, Java, C#, Kotlin',
+      'Front-End  : HTML5, CSS3, JavaScript',
+      'Outils/BDD : SQL/MySQL, Git, Docker',
+      'Réseau     : VLAN, Cisco IOS, configuration switch/routeur',
+    ],
+    projects: () => [
+      '- Jeu en Python (lycée, POO)',
+      '- Système de gestion de stock (C#/.NET, ENC Bessières)',
+      '- Calculator Tips (Kotlin, Android)',
+      '- Dice Roller (Kotlin, Android)',
+    ],
+    contact: () => {
+      closeTerminal();
+      showPage('contact', document.querySelector('[onclick*="contact"]'));
+      return ["Direction la page contact..."];
+    },
+    clear: () => { renderLines([], true); return null; },
+    exit: () => { closeTerminal(); return null; },
+  };
+
+  function renderLines(lines, replace) {
+    const body = document.getElementById('terminal-body');
+    if (!body) return;
+    if (replace) body.innerHTML = '';
+    lines.forEach(text => {
+      const div = document.createElement('div');
+      div.className = 'terminal-line ok';
+      div.textContent = text;
+      body.appendChild(div);
+    });
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function printCommand(cmd) {
+    const body = document.getElementById('terminal-body');
+    if (!body) return;
+    const div = document.createElement('div');
+    div.className = 'terminal-line cmd';
+    div.textContent = 'visiteur@portfolio:~$ ' + cmd;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function runCommand(raw) {
+    const cmd = raw.trim().toLowerCase();
+    if (!cmd) return;
+    printCommand(cmd);
+
+    if (cmd in COMMANDS) {
+      const out = COMMANDS[cmd]();
+      if (out) renderLines(out, false);
+      return;
+    }
+    renderLines([`commande introuvable : ${cmd} (tape "help")`], false);
+  }
+
+  window.closeTerminal = function(event) {
+    if (event && event.target !== event.currentTarget) return;
+    const overlay = document.getElementById('terminal-overlay');
+    if (overlay) overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  function openTerminal() {
+    const overlay = document.getElementById('terminal-overlay');
+    const input = document.getElementById('terminal-input');
+    if (!overlay) return;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    renderLines([
+      'Accès root accordé. Bienvenue.',
+      'Tape "help" pour voir les commandes disponibles.',
+    ], true);
+    if (input) {
+      input.value = '';
+      setTimeout(() => input.focus(), 50);
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    const overlay = document.getElementById('terminal-overlay');
+    const isOpen = overlay && overlay.classList.contains('active');
+
+    if (isOpen) {
+      if (e.key === 'Escape') closeTerminal();
+      return;
+    }
+
+    // Ignore si on tape déjà dans un champ de formulaire
+    const tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea') return;
+
+    if (e.key.length === 1) {
+      buffer = (buffer + e.key.toLowerCase()).slice(-TRIGGER.length);
+      if (buffer === TRIGGER) {
+        buffer = '';
+        openTerminal();
+      }
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('terminal-input');
+    if (!input) return;
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        runCommand(input.value);
+        input.value = '';
+      }
+    });
   });
 })();

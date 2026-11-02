@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Toi qui lis le code source : tape "sudo" n'importe où sur ce site 👀 -->
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -465,7 +466,7 @@
             </div>
           </div>
         </div>
-        <div class="stage-block stage-link-card" onclick="window.open('https://github.com/mylanpatisson740-bit/Projet_Scolaire','_blank')">
+        <div class="stage-block stage-link-card" onclick="window.open('https://github.com/mylanpatisson740-bit/fireball_game','_blank')">
           <div class="stage-header">
             <span class="stage-badge">PYTHON</span>
             <h3>Jeu en Python</h3>
@@ -644,7 +645,30 @@
     </div>
   </div>
 
+  <!-- Easter egg : terminal caché (tape "sudo" n'importe où sur le site) -->
+  <div id="terminal-overlay" class="terminal-overlay" onclick="closeTerminal(event)">
+    <div class="terminal-window" onclick="event.stopPropagation()">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+        </div>
+        <span class="terminal-title">mylan@portfolio:~$</span>
+        <button class="terminal-close" onclick="closeTerminal()" aria-label="Fermer">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="terminal-body" id="terminal-body"></div>
+      <div class="terminal-input-line">
+        <span class="terminal-prompt">visiteur@portfolio:~$</span>
+        <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+  </div>
+
   <section class="page" id="page-veille">
+    <canvas id="veille-neural-canvas"></canvas>
     <div class="page-inner">
       <h2 class="page-title">Veille informationnelle</h2>
 
@@ -658,255 +682,15 @@
         <div class="timeline-item">
           <div class="timeline-marker">
             <div class="timeline-dot"></div>
-            <div class="timeline-month">Septembre <span>2024</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Octobre <span>2024</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Novembre <span>2024</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Décembre <span>2024</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Janvier <span>2025</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Février <span>2025</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Mars <span>2025</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Avril <span>2025</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Mai <span>2025</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Juin <span>2025</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Juillet <span>2025</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Août <span>2025</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Septembre <span>2025</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Octobre <span>2025</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Novembre <span>2025</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
-            <div class="timeline-month">Décembre <span>2025</span></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
-            </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="timeline-dot"></div>
             <div class="timeline-month">Janvier <span>2026</span></div>
           </div>
           <div class="timeline-card">
             <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+              <span class="timeline-card-tag">Évolution</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> <a href="https://www.blogdumoderateur.com/top-20-modeles-ia-performants-janvier-2026/" target="_blank" rel="noopener">blogdumoderateur.com</a></span>
             </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+            <div class="timeline-card-title">Top 20 des modèles d'IA les plus performants en janvier 2026</div>
+            <p class="timeline-card-summary">Classement mensuel dominé par Gemini et Claude ; GPT-5.1 ne se place qu'en 9e position. Preuve de la rapidité avec laquelle les modèles utilisés par les développeurs évoluent d'un mois à l'autre où certains peuvent devenir obsolètes par rapport aux nouvelles versions.</p>
           </div>
         </div>
 
@@ -917,11 +701,11 @@
           </div>
           <div class="timeline-card">
             <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+              <span class="timeline-card-tag">Évolution</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> <a href="https://www.blogdumoderateur.com/ia-meilleurs-modeles-code-developpement-web-fevrier-2026/" target="_blank" rel="noopener">blogdumoderateur.com</a></span>
             </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+            <div class="timeline-card-title">Les meilleurs modèles IA pour le code et le développement web</div>
+            <p class="timeline-card-summary">Claude Opus 4.5 Thinking prend la tête de la WebDev Arena devant GPT-5.2 et Gemini 3 Pro — un classement qui montre à quel point le choix d'un modèle devient stratégique pour un développeur et que s'informer des évolutions est primordial.</p>
           </div>
         </div>
 
@@ -932,11 +716,11 @@
           </div>
           <div class="timeline-card">
             <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+              <span class="timeline-card-tag">Remplacement</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> <a href="https://www.actuia.com/actualite/microsoft-meta-google-laugmentation-de-la-part-de-code-des-entreprises-genere-par-lia-transforme-le-developpement-logiciel/" target="_blank" rel="noopener">actuia.com</a></span>
             </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+            <div class="timeline-card-title">L'augmentation de la part de code généré par l'IA transforme le développement logiciel</div>
+            <p class="timeline-card-summary">Satya Nadella annonce que 20 à 30% du code chez Microsoft est déjà généré par l'IA ; Mark Zuckerberg vise 50% chez Meta d'ici fin 2026.Kevin Scoot lui estime 95% chez Microsoft d'ici 2030. Le métier de développeur se redéfinit autour de la supervision de l'IA plutôt que de l'écriture entierement manuelle.</p>
           </div>
         </div>
 
@@ -947,11 +731,11 @@
           </div>
           <div class="timeline-card">
             <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+              <span class="timeline-card-tag">Évolution</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> <a href="https://www.blogdumoderateur.com/ia-meilleurs-modeles-code-developpement-web-avril-2026/" target="_blank" rel="noopener">blogdumoderateur.com</a></span>
             </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+            <div class="timeline-card-title">Les meilleurs modèles IA pour le code et le développement web — avril 2026</div>
+            <p class="timeline-card-summary">Anthropic garde 5 des 6 premières places de la WebDev Arena, mais GLM-5.1 de Z.ai (licence MIT) devient le premier modèle open source à atteindre le podium, mettant fin à la domination exclusive d'Anthropic sur le top 3.</p>
           </div>
         </div>
 
@@ -962,26 +746,101 @@
           </div>
           <div class="timeline-card">
             <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+              <span class="timeline-card-tag">Évolution</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> <a href="https://www.blogdumoderateur.com/ia-meilleurs-modeles-code-developpement-web-mai-2026/" target="_blank" rel="noopener">blogdumoderateur.com</a></span>
             </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+            <div class="timeline-card-title">Les meilleurs modèles IA pour le code et le développement web — mai 2026</div>
+            <p class="timeline-card-summary">Anthropic domine le classement WebDevArena avec 6 modèles dans le top 10. Gemini 3.1 Pro sort complètement du classement et GPT-5.5 High recule à la 10e place, tandis que Meta fait une entrée remarquée avec Muse Spark. Grosse différence par rapport à Février 26 où GPT-5.2 et Gemini 3.0 Pro étaient en parfaite concurrence.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Juin <span>2026</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">Remplacement</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> <a href="https://www.tech-connect.info/llm-developpeurs-menace-valeur-profession-2026/" target="_blank" rel="noopener">tech-connect.info</a></span>
+            </div>
+            <div class="timeline-card-title">Les LLM menacent-ils la valeur de la profession de développeur ?</div>
+            <p class="timeline-card-summary">Un ingénieur de 10 ans d'expérience estime que les LLM ont rendu son expertise obsolète en 18 mois : connaissance métier absorbée par les modèles, 90% des bugs de production résolus par l'IA, jugement architectural réduit à une simple "préférence". Une nuance est cependant à noter : comme pour Excel et les comptables, le métier pourrait se déplacer vers l'orchestration et le jugement plutôt que disparaître.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Juillet <span>2026</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">Évolution</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> <a href="https://www.blogdumoderateur.com/top-20-modeles-ia-performants-juillet-2026/" target="_blank" rel="noopener">blogdumoderateur.com</a></span>
+            </div>
+            <div class="timeline-card-title">Top 20 des modèles d'IA les plus performants en juillet 2026</div>
+            <p class="timeline-card-summary">Arrivée de Claude Opus 5 et Claude Fable 5 en tête du classement général : Gemini et GPT totalement hors course. Preuve de la volatilité du marché de l'IA.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Août <span>2026</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">Nouveaux Profils</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> <a href="https://www.blogdumoderateur.com/ingenierie-ia-nouvelles-competences-developpeurs-2026/" target="_blank" rel="noopener">blogdumoderateur.com</a></span>
+            </div>
+            <div class="timeline-card-title">Ingénierie IA : 4 nouvelles compétences pour les développeurs en 2026</div>
+            <p class="timeline-card-summary">Construire et déployer des applications d'IA, maîtriser les fondamentaux du génie logiciel, savoir piloter des agents de code et cadrer ce qui doit être construit : le développeur ne disparait pas, mais évolue.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Septembre <span>2026</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">Innovation</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> <a href="https://www.blogdumoderateur.com/openai-gpt-6-astra-premier-modele-niveau-risque-cyber-maximal/" target="_blank" rel="noopener">blogdumoderateur.com</a></span>
+            </div>
+            <div class="timeline-card-title">OpenAI lance GPT-6 Astra, son premier modèle classé au niveau de risque cyber maximal</div>
+            <p class="timeline-card-summary">Astra atteint 100% sur ExploitBench et a découvert deux failles inédites dans Chrome : OpenAI le classe au niveau "critique" de son Preparedness Framework(Evalué le risque du modèle), capable d'exploiter des failles inconnues sans aide humaine. Les capacités offensives restent verrouillées hors du programme Daybreak réservé aux professionnels de la cybersécurité.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-month">Octobre <span>2026</span></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-card-header">
+              <span class="timeline-card-tag">Innovation</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> <a href="https://www.usine-digitale.fr/logiciels-applications/github/github-veut-devenir-lorchestrateur-des-agents-ia-daide-au-developpement-plutot-que-miser-sur-un-seul-modele.JCOBGJG54VCFHHIRMBXNYPPXJY.html" target="_blank" rel="noopener">usine-digitale.fr</a></span>
+            </div>
+            <div class="timeline-card-title">GitHub veut devenir l'orchestrateur des agents IA d'aide au développement</div>
+            <p class="timeline-card-summary">Lors de sa conférence Universe, GitHub généralise Copilot Fusion, un système qui orchestre plusieurs modèles d'IA pour une tâche plutôt que d'en utiliser un seul,facilitant ainsi le choix ardu des développeurs pour choisir le modèle le plus adapté. Plus de 40% des pull requests sont désormais initiées par un agent, contre 17% en mars.</p>
           </div>
         </div>
 
         <div class="timeline-item">
           <div class="timeline-marker">
             <div class="timeline-dot timeline-dot-latest"></div>
-            <div class="timeline-month">Juin <span>2026</span></div>
+            <div class="timeline-month">Novembre <span>2026</span></div>
           </div>
           <div class="timeline-card">
             <div class="timeline-card-header">
-              <span class="timeline-card-tag">IA générative</span>
-              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> À renseigner</span>
+              <span class="timeline-card-tag">Innovation</span>
+              <span class="timeline-card-source"><i class="bi bi-link-45deg"></i> <a href="https://www.lemondeinformatique.fr/actualites/lire-mistral-ai-ouvre-a-orange-cyberdefense-l-acces-anticipe-a-une-version-specialisee-de-large-4-100890.html" target="_blank" rel="noopener">lemondeinformatique.fr</a></span>
             </div>
-            <div class="timeline-card-title">Titre de l'article</div>
-            <p class="timeline-card-summary">Résumé de l'article à compléter.</p>
+            <div class="timeline-card-title">Mistral AI ouvre à Orange Cyberdefense l'accès anticipé à une version spécialisée de Large 4</div>
+            <p class="timeline-card-summary">Orange Cyberdefense devient le premier partenaire MSSP européen de Mistral AI, avec une version de Large 4 dédiée aux tests d'intrusion, à l'analyse de vulnérabilités et à la réponse à l'incident.</p>
           </div>
         </div>
 
